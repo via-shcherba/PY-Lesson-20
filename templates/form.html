@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}Форма поиска{% endblock %}
+
+{% block content %}
+<h1>Поиск вакансий</h1>
+<form method="POST" class="form-inline">
+    <div class="form-group mb-2">
+        <input type="text" name="query" placeholder="Введите запрос" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-primary mb-2">Искать</button>
+</form>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Результаты{% endblock %}
+
+{% block content %}
+<h1>Результаты поиска</h1>
+<p>Ваш запрос: {{ query }}</p>
+{% if results %}
+    <ul class="list-group">
+        {% for result in results %}
+            <li class="list-group-item">
+                <strong>{{ result.title }}</strong><br>
+                <small>{{ result.description }}</small>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>Не найдено результатов.</p>
+{% endif %}
+<a href="/form" class="btn btn-secondary">Назад</a>
+{% endblock %}

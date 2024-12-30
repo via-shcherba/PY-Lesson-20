@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
-from parser import fetch_jobs  
+from parser import run_fetch_jobs  
+import threading
 
 
 app = Flask(__name__)
@@ -20,8 +21,13 @@ def contacts():
 def form_view():
     if request.method == 'POST':
         query = request.form['query']
-        results = fetch_jobs(query) 
-        return render_template('results.html', query=query, results=results)
+             
+        result = []
+        thread = threading.Thread(target=lambda: result.append(run_fetch_jobs(query)))
+        thread.start()
+        thread.join() 
+        
+        return render_template('results.html', query=query, results=result[0])
     return render_template('form.html')
 
 
